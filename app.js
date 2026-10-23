@@ -8,7 +8,7 @@
 // Event handling, user interaction is what starts the code execution.
 
 const taskInput = document.getElementById("new-task"); //Add a new task.
-const addButton = document.getElementsByTagName("button")[0]; //first button
+const addButton = document.getElementById("add-new-task"); //first button
 const incompleteTaskHolder = document.getElementById("incompleteTasks"); //ul of #incompleteTasks
 const completedTasksHolder = document.getElementById("completed-tasks"); //completed-tasks
 
@@ -114,14 +114,7 @@ const taskIncomplete = function () {
   bindTaskEvents(listItem, taskCompleted);
 };
 
-const ajaxRequest = function () {};
-
-//The glue to hold it all together.
-
-//Set the click handler to the addTask function.
-addButton.onclick = addTask;
 addButton.addEventListener("click", addTask);
-addButton.addEventListener("click", ajaxRequest);
 
 const bindTaskEvents = function (taskListItem, checkBoxEventHandler) {
   //select ListItems children
