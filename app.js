@@ -1,18 +1,8 @@
-//Document is the DOM can be accessed in the console with document.window.
-// Tree is from the top, html, body, p etc.
+const taskInput = document.getElementById("new-task");
+const addButton = document.getElementById("add-new-task");
+const incompleteTaskHolder = document.getElementById("incompleteTasks");
+const completedTasksHolder = document.getElementById("completed-tasks");
 
-//Problem: User interaction does not provide the correct results.
-//Solution: Add interactivity so the user can manage daily tasks.
-//Break things down into smaller steps and take each step at a time.
-
-// Event handling, user interaction is what starts the code execution.
-
-const taskInput = document.getElementById("new-task"); //Add a new task.
-const addButton = document.getElementById("add-new-task"); //first button
-const incompleteTaskHolder = document.getElementById("incompleteTasks"); //ul of #incompleteTasks
-const completedTasksHolder = document.getElementById("completed-tasks"); //completed-tasks
-
-//New task list item
 const createNewTaskElement = function (taskString) {
   const listItem = document.createElement("li");
 
@@ -30,19 +20,17 @@ const createNewTaskElement = function (taskString) {
   label.innerText = taskString;
   label.className = "task";
 
-  //Each elements, needs appending
   checkBox.type = "checkbox";
   editInput.type = "text";
   editInput.className = "task";
 
-  editButton.innerText = "Edit"; //innerText encodes special characters, HTML does not.
+  editButton.innerText = "Edit";
   editButton.className = "edit";
 
   deleteButton.className = "delete";
   deleteButtonImg.src = "./remove.svg";
   deleteButton.appendChild(deleteButtonImg);
 
-  //and appending.
   listItem.appendChild(checkBox);
   listItem.appendChild(label);
   listItem.appendChild(editInput);
@@ -52,14 +40,12 @@ const createNewTaskElement = function (taskString) {
 };
 
 const addTask = function () {
-  //Create a new list item with the text from the #new-task:
   const taskText = taskInput.value.trim();
 
   if (!taskText) return;
 
   const listItem = createNewTaskElement(taskText);
 
-  //Append listItem to incompleteTaskHolder
   incompleteTaskHolder.appendChild(listItem);
   bindTaskEvents(listItem);
 
@@ -104,16 +90,12 @@ taskInput.addEventListener("keydown", (e) => {
 });
 
 const bindTaskEvents = function (taskListItem) {
-  //select ListItems children
   const checkBox = taskListItem.querySelector("input[type=checkbox]");
   const editButton = taskListItem.querySelector("button.edit");
   const deleteButton = taskListItem.querySelector("button.delete");
 
-  //Bind editTask to edit button.
   editButton.addEventListener("click", editTask);
-  //Bind deleteTask to delete button.
   deleteButton.addEventListener("click", deleteTask);
-  //Bind taskCompleted to checkBoxEventHandler.
   checkBox.addEventListener("change", toggleTaskStatus);
 };
 
