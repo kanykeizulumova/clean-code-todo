@@ -117,21 +117,9 @@ const bindTaskEvents = function (taskListItem) {
   checkBox.addEventListener("change", toggleTaskStatus);
 };
 
-//cycle over incompleteTaskHolder ul list items
-//for each list item
-for (let i = 0; i < incompleteTaskHolder.children.length; i++) {
-  //bind events to list items chldren(tasksCompleted)
-  bindTaskEvents(incompleteTaskHolder.children[i]);
-}
+const initList = (holder) => {
+  Array.from(holder.children).forEach(bindTaskEvents);
+};
 
-//cycle over completedTasksHolder ul list items
-for (let i = 0; i < completedTasksHolder.children.length; i++) {
-  //bind events to list items chldren(tasksIncompleted)
-  bindTaskEvents(completedTasksHolder.children[i]);
-}
-
-// Issues with usability don't get seen until they are in front of a human tester.
-
-//prevent creation of empty tasks.
-
-//Change edit to save when you are in edit mode.
+initList(incompleteTaskHolder);
+initList(completedTasksHolder);
