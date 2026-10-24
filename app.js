@@ -99,6 +99,9 @@ const toggleTaskStatus = function () {
 };
 
 addButton.addEventListener("click", addTask);
+taskInput.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") addTask();
+});
 
 const bindTaskEvents = function (taskListItem) {
   //select ListItems children
