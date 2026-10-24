@@ -83,14 +83,10 @@ const editTask = function () {
   listItem.classList.toggle("editMode");
 };
 
-//Delete task.
 const deleteTask = function () {
-  const listItem = this.parentNode;
-  const ul = listItem.parentNode;
-  //Remove the parent list item from the ul.
-  ul.removeChild(listItem);
+  const listItem = this.closest("li");
+  listItem.remove();
 };
-
 //Mark task completed
 const taskCompleted = function () {
   //Append the task list item to the #completed-tasks
